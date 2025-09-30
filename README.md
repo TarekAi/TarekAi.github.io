@@ -1,1 +1,1 @@
-# TarekAi.github.io
+# Teachings
