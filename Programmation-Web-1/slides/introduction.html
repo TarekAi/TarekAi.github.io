@@ -2,13 +2,111 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Introduction au Web</title>
-  <link rel="stylesheet" href="../../style.css">
+  <title>Slides - Introduction au Web</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #222;
+      color: #fff;
+      overflow: hidden;
+    }
+    .slide {
+      display: none;
+      width: 100vw;
+      height: 100vh;
+      padding: 50px;
+      box-sizing: border-box;
+    }
+    .active {
+      display: block;
+    }
+    h1, h2, p {
+      margin: 0 0 20px;
+    }
+    .nav {
+      position: fixed;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+    }
+    .nav button {
+      background: #0a9396;
+      border: none;
+      padding: 10px 20px;
+      margin: 0 10px;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+    .nav button:hover {
+      background: #94d2bd;
+      color: black;
+    }
+  </style>
 </head>
 <body>
-  <h1>Introduction au Web</h1>
-  <p>Contenu de la partie introduction (texte, liens vers PDF, ou intégration de slides en ligne).</p>
-  
-  <a href="index.html">← Retour au menu des slides</a>
+
+  <!-- Slide 1 -->
+  <div class="slide active">
+    <h1>Introduction au Web</h1>
+    <h2>Cours de Programmation Web</h2>
+    <p>Bienvenue dans la première partie du cours !</p>
+  </div>
+
+  <!-- Slide 2 -->
+  <div class="slide">
+    <h1>Qu’est-ce que le Web ?</h1>
+    <p>Le Web est un système d’information basé sur :</p>
+    <ul>
+      <li>Le protocole HTTP</li>
+      <li>Les navigateurs (clients)</li>
+      <li>Les serveurs web</li>
+      <li>Les ressources (pages HTML, CSS, images, etc.)</li>
+    </ul>
+  </div>
+
+  <!-- Slide 3 -->
+  <div class="slide">
+    <h1>Histoire du Web</h1>
+    <p>Inventé en 1989 par Tim Berners-Lee au CERN.</p>
+    <p>Le Web repose sur les standards du W3C et s’est rapidement imposé comme un outil universel de communication.</p>
+  </div>
+
+  <!-- Navigation -->
+  <div class="nav">
+    <button onclick="prevSlide()">← Précédent</button>
+    <button onclick="nextSlide()">Suivant →</button>
+    <a href="index.html" style="margin-left:20px; color:#fff; text-decoration:underline;">Retour au menu</a>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.remove('active');
+        if (i === index) slide.classList.add('active');
+      });
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(currentSlide);
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") nextSlide();
+      if (e.key === "ArrowLeft") prevSlide();
+    });
+  </script>
+
 </body>
 </html>
